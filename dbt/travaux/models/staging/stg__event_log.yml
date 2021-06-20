@@ -1,0 +1,54 @@
+version: 2
+
+models:
+  - name: stg__event_log
+    description: The dataset contains selected events from the professional’s journey on Werkspot
+    columns:
+      - name: event_id
+        description: unique event identifier
+        tests:
+          - unique
+          - not_null
+      - name: event_type
+        description: professional's activity on the platform
+        tests:
+          - not_null
+          - accepted_values:
+              values:
+                - created_account
+                - became_able_to_propose
+                - became_unable_to_propose
+                - proposed
+      - name: professional_id_anonymized
+        description: anonymized professional identifier 
+        tests:
+          - not_null
+      - name: created_at
+        description: timestamp recorded for the event
+        tests:
+          - not_null
+      - name: service_id
+        description: service identifier
+        tests:
+          - implies:
+              fields:
+                - service_name_nl
+                - service_name_en
+          - does_not_imply:
+              fields:
+                - lead_fee
+      - name: service_name_nl
+        description: dutch service description
+        tests:
+          - depends_on:
+              fields:
+                - service_id 
+      - name: service_name_en
+        description: english service description
+      - name: lead_fee
+        description: >
+          lead fee paid by the professional to Werkspot for getting the homeowner's contact details
+        tests:
+          - does_not_depend_on:
+              fields: 
+                - service_id

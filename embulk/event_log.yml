@@ -1,0 +1,33 @@
+in:
+  type: file
+  path_prefix: ../data/
+  parser:
+    type: csv
+    charset: UTF-8
+    newline: CRLF
+    delimiter: ;
+    quote: '"'
+    escape: '"'
+    null_string: ''
+    trim_if_not_quoted: true
+    skip_header_lines: 1
+    allow_extra_columns: false
+    allow_optional_columns: false
+    stop_on_invalid_record: true
+    columns:
+    - {name: event_id, type: long}
+    - {name: event_type, type: string}
+    - {name: professional_id_anonymized, type: long}
+    - {name: created_at, type: timestamp, format: '%Y-%m-%d %H:%M:%S'}
+    - {name: meta_data, type: string}
+out:
+  type: postgresql
+  host: localhost
+  user: postgres
+  password: postgres
+  database: travaux
+  schema: src_log
+  temp_schema: tmp_embulk
+  table: event_log
+  create_table_constraint: 'primary key(event_id)'
+  mode: merge

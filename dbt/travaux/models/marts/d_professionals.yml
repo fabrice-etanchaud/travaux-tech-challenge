@@ -1,0 +1,15 @@
+version: 2
+
+models:
+  - name: d_professionals 
+    description: anonymized professionals 
+    columns:
+      - name: professional_id_anonymized
+        description: unique anonymized professional identifier
+        tests:
+          - unique
+          - not_null
+      - name: registered_at
+        description: timestamp of registration on the plateform 
+        tests:
+          - not_null

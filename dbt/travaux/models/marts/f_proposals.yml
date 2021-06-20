@@ -1,0 +1,33 @@
+version: 2
+
+models:
+  - name: f_proposals
+    description: service offer from a professional to an home owner
+    columns:
+      - name: proposal_id
+        description: proposal unique identifier
+        tests:
+          - unique
+          - not_null
+      - name: professional_id_anonymized
+        description: anonymized professional identifier
+        tests:
+          - not_null 
+          - relationships:
+              to: ref('d_professionals')
+              field: professional_id_anonymized
+      - name: service_id
+        description: service identifier
+        tests:
+          - not_null
+          - relationships:
+              to: ref('d_services')
+              field: service_id
+      - name: proposed_at
+        description: date and time of proprosal
+        tests:
+          - not_null
+      - name: lead_fee
+        description: lead fee paid by the professional to Werkspot for getting the homeowner’s contact details.
+        tests:
+          - not_null

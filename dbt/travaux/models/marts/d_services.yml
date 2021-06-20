@@ -1,0 +1,21 @@
+version: 2
+
+models:
+  - name: d_services
+    description: services offered by professionals
+    columns:
+      - name: service_id
+        description: unique service identifier
+        tests:
+          - unique
+          - not_null
+      - name: service_name_nl
+        description: dutch service description
+        tests:
+          - unique
+          - not_null
+      - name: service_name_en
+        description: english service description
+        tests:
+          - unique
+          - not_null

@@ -1,0 +1,41 @@
+version: 2
+
+sources:
+  - name: log
+    schema: src_log
+    tables:
+      - name: event_log
+        description: The dataset contains selected events from the professional’s journey on Werkspot
+        columns:
+          - name: event_id
+            description: unique event identifier
+            tests:
+              - unique
+              - not_null
+          - name: event_type
+            description: professional's activity on the platform
+            tests:
+              - not_null
+              - accepted_values:
+                  values:
+                    - created_account
+                    - became_able_to_propose
+                    - became_unable_to_propose
+                    - proposed
+          - name: professional_id_anonymized
+            description: anonymized professional identifier 
+            tests:
+              - not_null
+          - name: created_at
+            description: timestamp recorded for the event
+            tests:
+              - not_null
+          - name: meta_data
+            description: | 
+              Additional information associated with the proposed event type,
+              with the following pattern: {service_id}_{service_name_nl]_{service_name_en}_{lead_fee}
+              For example: 127_binnenhuis-ontwerp_interior-design_3.4 is for :
+              service_id=127, Interior Design (Binnenhuis Ontwerp in Dutch),
+              with a (fictional) lead fee of €3.4 that will be paid by the professional 
+              to Werkspot for getting the homeowner’s contact details.
+

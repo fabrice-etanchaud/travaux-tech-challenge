@@ -1,0 +1,12 @@
+travaux:
+  outputs:
+    prod:
+      type: postgres
+      threads: 2
+      host: localhost
+      port: 5432
+      database: travaux
+      schema: dbt
+      user: postgres
+      password: postgres
+  target: prod
