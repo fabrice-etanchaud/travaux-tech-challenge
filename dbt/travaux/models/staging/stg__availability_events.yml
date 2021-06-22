@@ -1,0 +1,31 @@
+version: 2
+
+models:
+  - name: stg__availability_events
+    description: cleaned (un)availability events
+    columns:
+      - name: event_id
+        description: unique event identifier
+        tests:
+          - unique
+          - not_null
+      - name: event_type
+        description: professional's activity on the platform
+        tests:
+          - not_null
+          - accepted_values:
+              values:
+                - became_able_to_propose
+                - became_unable_to_propose
+      - name: professional_id_anonymized
+        description: anonymized professional identifier
+        tests:
+          - not_null
+      - name: created_at
+        description: timestamp recorded for the event
+        tests:
+          - not_null
+      - name: is_redundant
+        description: is current event a redundant event ?
+        tests:
+          - not_null

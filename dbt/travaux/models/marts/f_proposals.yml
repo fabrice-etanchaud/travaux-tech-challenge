@@ -12,7 +12,7 @@ models:
       - name: professional_id_anonymized
         description: anonymized professional identifier
         tests:
-          - not_null 
+          - not_null
           - relationships:
               to: ref('d_professionals')
               field: professional_id_anonymized
@@ -23,8 +23,15 @@ models:
           - relationships:
               to: ref('d_services')
               field: service_id
-      - name: proposed_at
-        description: date and time of proprosal
+      - name: proposal_date
+        description: date of proposal on the plateform
+        tests:
+          - not_null
+          - relationships:
+              to: ref('d_dates')
+              field: date_id
+      - name: proposal_time
+        description: time of proposal on the plateform
         tests:
           - not_null
       - name: lead_fee

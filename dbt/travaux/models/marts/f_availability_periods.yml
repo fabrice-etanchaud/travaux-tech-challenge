@@ -1,0 +1,48 @@
+version: 2
+
+models:
+  - name: f_availability_periods
+    description: (un)availability periods of professionals
+    columns:
+      - name: availability_period_id
+        description: unique availability period identifier
+        tests:
+          - unique
+          - not_null
+      - name: professional_id_anonymized
+        description: anonymized professional identifier
+        tests:
+          - not_null
+          - relationships:
+              to: ref('d_professionals')
+              field: professional_id_anonymized
+      - name: availability_status
+        description: availability status, is this an availability or unavailability period ?
+        tests:
+          - not_null
+          - accepted_values:
+              values:
+                - 'Yes'
+                - 'No'
+      - name: begin_date
+        description: begin date of period
+        tests:
+          - not_null
+          - relationships:
+              to: ref('d_dates')
+              field: date_id
+      - name: begin_time
+        description: begin time of period
+        tests:
+          - not_null
+      - name: end_date
+        description: end date of period
+        tests:
+          - not_null
+          - relationships:
+              to: ref('d_dates')
+              field: date_id
+      - name: end_time
+        description: end time of period
+        tests:
+          - not_null

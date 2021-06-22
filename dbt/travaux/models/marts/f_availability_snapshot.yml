@@ -1,0 +1,21 @@
+version: 2
+
+models:
+  - name: f_availability_snapshot
+    description: daily snapshot of active professionals' count
+    columns:
+      - name: date_id
+        description: snapshot date
+        tests:
+          - unique
+          - not_null
+          - relationships:
+              to: ref('d_dates')
+              field: date_id
+      - name: active_professionals_count
+        description: count of active professionals that day
+        tests:
+          - not_null
+          - relationships:
+              to: ref('d_professionals')
+              field: professional_id_anonymized

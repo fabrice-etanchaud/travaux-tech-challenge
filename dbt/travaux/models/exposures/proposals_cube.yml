@@ -1,0 +1,20 @@
+version: 2
+
+exposures:
+
+  - name: professionals_journey
+    type: dashboard
+    maturity: low
+    url: http://localhost:3000/dashboard/1
+    description: Professionals' journey at Werkspot
+
+    depends_on:
+      - ref('f_availability_snapshot')
+      - ref('f_proposals')
+      - ref('d_professionals')
+      - ref('d_services')
+      - ref('d_dates')
+
+    owner:
+      name: Fabrice
+      email: fabrice.etanchaud@netc.fr

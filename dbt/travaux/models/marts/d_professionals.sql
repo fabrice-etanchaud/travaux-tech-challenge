@@ -1,6 +1,6 @@
 select
   professional_id_anonymized
-  ,created_at as registered_at
+  ,{{ timestamp_to_dimension('created_at', 'registration') }}
 from
   {{ ref('stg__event_log') }}
 where
