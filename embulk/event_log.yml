@@ -1,6 +1,6 @@
 in:
   type: file
-  path_prefix: ../data/
+  path_prefix: /data/
   parser:
     type: csv
     charset: UTF-8
